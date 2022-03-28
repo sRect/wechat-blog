@@ -1,0 +1,14 @@
+{
+  "miniprogramRoot": "./dist",
+  "projectname": "wechat-blog",
+  "description": "sRect的个人博客",
+  "appid": "wxc5bb18298ec339b4",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "checkSiteMap": false
+  },
+  "compileType": "miniprogram"
+}
