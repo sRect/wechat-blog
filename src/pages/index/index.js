@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { View, Text, Button } from "@tarojs/components";
-import { actions } from "@/src/store";
-import { Context } from "../../app";
+import { actions, Context } from "@/src/store";
 import "./index.less";
 
 function Index() {

@@ -1,4 +1,4 @@
-import React, { useEffect, createContext } from "react"; // eslint-disable-line
+import React, { useEffect } from "react"; // eslint-disable-line
 import { ConfigProvider, SafeArea } from "antd-mobile";
 import zhCN from "antd-mobile/es/locales/zh-CN";
 import { useImmerReducer } from "use-immer";
@@ -10,13 +10,12 @@ import { useDidShow, useDidHide } from "@tarojs/taro";
 // import { Provider } from "react-redux";
 // import configStore from "./store";
 
-import { reducers, states } from "@/src/store";
+import { reducers, states, Context } from "@/src/store";
 
 // 全局样式
 import "./app.less";
 
 // const store = configStore();
-export const Context = createContext({});
 
 function App(props) {
   const { counterReducer } = reducers;

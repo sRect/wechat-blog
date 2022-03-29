@@ -1486,6 +1486,11 @@
     webpack-format-messages "^2.0.5"
     yauzl "2.10.0"
 
+"@tarojs/plugin-html@^3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@tarojs/plugin-html/-/plugin-html-3.4.3.tgz#6d801cd6c359e4aefb47974759c02f36b5fda5d4"
+  integrity sha512-Y84Z77hHQVX55MnJ838rkjWNtmw90SqBvgzmi7ctpyTq6xz/kIPPDatVHPVO+1IRt2EH+9iU24DPQaWtcJKaWA==
+
 "@tarojs/plugin-platform-alipay@3.3.7":
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/@tarojs/plugin-platform-alipay/-/plugin-platform-alipay-3.3.7.tgz#c251c1e06386b860e681a459a1adb49c7194fa2c"

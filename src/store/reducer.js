@@ -5,10 +5,12 @@ import { contData } from "./states";
 export const counterReducer = (draft, action) => {
   switch (action.type) {
     case types.INCREMENT:
-      return contData;
+      draft.num += action.payload;
+      break;
     case types.DECREMENT:
-      return void draft.num + action.payload;
-    case "decrement":
-      return void draft.salary - action.payload;
+      draft.num -= action.payload;
+      break;
+    default:
+      return contData;
   }
 };
