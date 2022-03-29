@@ -1,7 +1,9 @@
 import { useRef } from "react";
 // import Taro from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
-import { Button } from "antd-mobile";
+import { Button, Image } from "antd-mobile";
+import LIST_PNG from "@/src/assets/img/list.png";
+import USER_PNG from "@/src/assets/img/user.png";
 import styles from "./Index.module.less";
 
 // const DEFAULT_BASE64 =
@@ -26,12 +28,38 @@ function Index() {
 
         <View className={styles.content}>
           <View>
-            <Button block color="primary" size="small" fill="outline">
+            <Button
+              block
+              color="primary"
+              size="small"
+              fill="outline"
+              className={styles.item}
+            >
+              <Image
+                src={LIST_PNG}
+                width={16}
+                height={16}
+                alt="list"
+                className={styles.icon}
+              />
               文章列表
             </Button>
           </View>
           <View>
-            <Button block color="primary" size="small" fill="outline">
+            <Button
+              block
+              color="primary"
+              size="small"
+              fill="outline"
+              className={styles.item}
+            >
+              <Image
+                src={USER_PNG}
+                width={16}
+                height={16}
+                alt="list"
+                className={styles.icon}
+              />
               关于我
             </Button>
           </View>
