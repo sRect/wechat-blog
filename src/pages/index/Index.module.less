@@ -1,0 +1,77 @@
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* https://github.com/hanumancode/Background-Image-Animation-CSS3/blob/master/style.css */
+.wrapper::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  bottom: 0;
+}
+
+.wrapper::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform: translateZ(0) scale(1, 1);
+  background-color: #f5f5d5;
+  // Tarojs 微信小程序中使用css变量失败。。。
+  // background-image: var(--home-background);
+  background-image: url(http://121.199.8.71/_next/image?url=%2Fimages%2Ftest1.png&w=3840&q=65);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  animation: animate 20s linear infinite;
+  animation-direction: alternate;
+  transition: all 0.2s ease-in-out;
+  z-index: -2;
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.container {
+  color: #fff;
+  width: 85%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.8em;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.header {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  text-shadow: 0 1px 1px #333;
+}
+
+.content {
+  font-size: 16px;
+}

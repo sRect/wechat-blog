@@ -1,3 +1,8 @@
+// https://taro-docs.jd.com/taro/docs/page-config
 export default {
-  navigationBarTitleText: '首页'
-}
+  navigationBarTitleText: "sRect的个人博客",
+  enableShareAppMessage: true,
+  enableShareTimeline: true,
+  disableSwipeBack: true,
+  // navigationBarBackgroundColor: "#1677ff",
+};
