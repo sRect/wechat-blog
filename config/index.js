@@ -66,6 +66,10 @@ function getConf() {
           from: "cloudbase/",
           to: "dist/cloudbase/",
         },
+        {
+          from: "src/components/wemark",
+          to: "dist/wemark",
+        },
       ],
       options: {},
     },
@@ -100,6 +104,13 @@ function getConf() {
           strictMath: true,
           noIeCompat: true,
         },
+      },
+      // https://github.com/NervJS/taro/issues/1213
+      // https://nervjs.github.io/taro/docs/config-detail#minicompileexclude
+      compile: {
+        exclude: [
+          path.resolve(__dirname, "../src/components/wemark/wemark.js"),
+        ],
       },
     },
     h5: {

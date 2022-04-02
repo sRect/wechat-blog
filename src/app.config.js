@@ -21,4 +21,7 @@ export default {
     navigationBarTitleText: "sRect的个人博客",
     navigationBarTextStyle: "black",
   },
+  usingComponents: {
+    wemark: "./components/wemark/wemark",
+  },
 };
