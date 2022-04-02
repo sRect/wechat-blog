@@ -99,6 +99,10 @@ const Detail = () => {
 
         setMdStr(result.content);
 
+        Taro.setNavigationBarTitle({
+          title: (result.data && result.data.title) || "文章详情",
+        });
+
         Taro.hideLoading();
       })
       .catch((err) => {
@@ -107,18 +111,6 @@ const Detail = () => {
         Taro.hideLoading();
       });
   }, [listPageData.filename]);
-
-  // useReady(() => {
-  //   // https://developers.weixin.qq.com/community/develop/doc/000aa0f17a8af0e02d7c0ca5e56800
-  //   const query = Taro.createSelectorQuery().in(this);
-
-  //   query
-  //     .select("#md")
-  //     .node(function (res) {
-  //       console.log("node==>", res);
-  //     })
-  //     .exec();
-  // });
 
   return (
     <View id="md" className="markdown-body">

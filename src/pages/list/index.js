@@ -97,7 +97,7 @@ const List = () => {
   return (
     <View className={styles.wrapper}>
       {skeletonLoading ? (
-        <Skeleton.Paragraph lineCount={20} animated />
+        <Skeleton.Paragraph lineCount={50} animated />
       ) : (
         <ScrollView
           className="scrollview"

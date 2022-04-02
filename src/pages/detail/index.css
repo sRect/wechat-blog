@@ -1,6 +1,18 @@
+/* @import url("github-markdown-css/github-markdown.css"); */
+
 .markdown-body {
   height: 100vh;
-  padding: 0 10px;
+  padding: 0 28px;
+  box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.wemark_inline_code {
+  background: #edebed;
+  padding: 3px 5px;
+  word-wrap: break-word;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
