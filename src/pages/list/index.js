@@ -134,6 +134,7 @@ const List = () => {
                 return (
                   <View key={item.id}>
                     <AntdList.Item
+                      className={styles.listItem}
                       clickable
                       onClick={() => handleGotoDetail(item)}
                       arrow={
