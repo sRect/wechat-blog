@@ -9,6 +9,7 @@
     "css": "less"
   },
   "scripts": {
+    "gen:json": "cross-env GEN_TYPE_ENV=json node posts",
     "build:weapp": "cross-env DEV_MODE_ENV=false taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -43,9 +44,20 @@
     "@tarojs/taro": "3.3.7",
     "antd-mobile": "^5.8.2",
     "antd-mobile-icons": "^0.2.2",
+    "github-markdown-css": "^5.1.0",
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.5.0",
     "immer": "^9.0.12",
+    "nanoid": "^3.3.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "rehype-stringify": "^9.0.3",
+    "remark": "^14.0.2",
+    "remark-extended-table": "^1.0.0",
+    "remark-gfm": "^3.0.1",
+    "remark-html": "^15.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
     "use-immer": "^0.6.0"
   },
   "devDependencies": {

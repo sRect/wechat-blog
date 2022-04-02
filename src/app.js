@@ -4,7 +4,7 @@ import zhCN from "antd-mobile/es/locales/zh-CN";
 import { useImmerReducer } from "use-immer";
 
 // Taro 额外添加的 hooks 要从 '@tarojs/taro' 中引入
-import { useDidShow, useDidHide } from "@tarojs/taro";
+import Taro, { useDidShow, useDidHide } from "@tarojs/taro";
 
 // 假设我们要使用 Redux
 // import { Provider } from "react-redux";
@@ -17,13 +17,23 @@ import "./app.less";
 
 // const store = configStore();
 
+/* global CLOUD_ENV */
+
 function App(props) {
-  const { counterReducer } = reducers;
-  const { contData } = states;
+  const { counterReducer, listPageReducer } = reducers;
+  const { contData, listData } = states;
   const [contObj, dispatchCount] = useImmerReducer(counterReducer, contData);
+  const [listPageData, dispatchPageData] = useImmerReducer(
+    listPageReducer,
+    listData
+  );
 
   // 可以使用所有的 React Hooks
-  useEffect(() => {});
+  useEffect(() => {
+    Taro.cloud.init({
+      env: CLOUD_ENV,
+    });
+  }, []);
 
   // 对应 onShow
   useDidShow(() => {});
@@ -34,7 +44,9 @@ function App(props) {
   return (
     // 在入口组件不会渲染任何内容，但我们可以在这里做类似于状态管理的事情
     <ConfigProvider locale={zhCN}>
-      <Context.Provider value={{ contObj, dispatchCount }}>
+      <Context.Provider
+        value={{ contObj, dispatchCount, listPageData, dispatchPageData }}
+      >
         <SafeArea position="top" />
         {/* props.children 是将要被渲染的页面 */}
         {props.children}

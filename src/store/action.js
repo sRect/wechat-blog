@@ -13,3 +13,14 @@ export const decrement = (num = 1) => {
     payload: num,
   };
 };
+
+// list
+export const setFilename = (filename) => ({
+  type: types.SET_FILENAME,
+  payload: filename,
+});
+
+export const setListScrollTop = (scrollTop = 0) => ({
+  type: types.SET_LIST_SCROLLTOP,
+  payload: scrollTop,
+});

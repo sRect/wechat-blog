@@ -1,9 +1,24 @@
 export default {
-  pages: ["pages/index/index", "pages/list/index", "pages/about/index"],
+  cloud: true,
+  pages: ["pages/index/index"],
+  subpackages: [
+    {
+      root: "pages/list",
+      pages: ["index"],
+    },
+    {
+      root: "pages/about",
+      pages: ["index"],
+    },
+    {
+      root: "pages/detail",
+      pages: ["index"],
+    },
+  ],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
-    navigationBarTitleText: "WeChat",
+    navigationBarTitleText: "sRect的个人博客",
     navigationBarTextStyle: "black",
   },
 };
