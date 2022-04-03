@@ -7,7 +7,7 @@
 }
 .wemark_block_h1{
 	font-size:40rpx;
-	text-align: center;
+	/*text-align: center;*/
 	margin-bottom:1em;
 }
 .wemark_block_h2{
@@ -132,7 +132,7 @@
 	height:auto;
 }
 .wemark_inline_code{
-	background:#f0f0f0;
+	/*background:#f0f0f0;*/
 	padding:3px 5px;
 	word-wrap:break-word;
 }

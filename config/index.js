@@ -27,6 +27,7 @@ function getConf() {
   const CLOUD_ENV = getEnvConfig("CLOUD_ENV");
   const JSON_CLOUD_PATH = getEnvConfig("JSON_CLOUD_PATH");
   const MD_CLOUD_PATH = getEnvConfig("MD_CLOUD_PATH");
+  const IMG_CLOUD_PATH = getEnvConfig("IMG_CLOUD_PATH");
 
   const config = {
     projectName: "wechat-blog",
@@ -59,6 +60,7 @@ function getConf() {
       // 云存储json路径
       JSON_CLOUD_PATH: JSON.stringify(JSON_CLOUD_PATH),
       MD_CLOUD_PATH: JSON.stringify(MD_CLOUD_PATH),
+      IMG_CLOUD_PATH: JSON.stringify(IMG_CLOUD_PATH),
     },
     copy: {
       patterns: [

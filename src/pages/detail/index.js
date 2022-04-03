@@ -2,21 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import Taro from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { Context } from "@/src/store";
-// import hljs from "highlight.js";
-
-// import { remark } from "remark";
-// import html from "remark-html";
-// import {
-//   remarkExtendedTable,
-//   extendedTableHandlers,
-// } from "remark-extended-table";
-// import remarkParse from "remark-parse";
-// import remarkRehype from "remark-rehype";
-// import rehypeStringify from "rehype-stringify";
-// import remarkGfm from "remark-gfm";
-
-// import "github-markdown-css/github-markdown.css";
-// import "highlight.js/styles/github.css";
 import "./index.css";
 
 /* global MD_CLOUD_PATH */
@@ -24,6 +9,18 @@ import "./index.css";
 const Detail = () => {
   const { listPageData } = useContext(Context);
   const [mdStr, setMdStr] = useState("");
+
+  // useReady(() => {
+  //   setTimeout(() => {
+  //     Taro.createSelectorQuery()
+  //       .select(".markdown-body")
+  //       .node((res) => {
+  //         console.log("==>");
+  //         console.log(res);
+  //       })
+  //       .exec();
+  //   }, 1500);
+  // });
 
   useEffect(() => {
     if (!listPageData.filename) {
@@ -103,7 +100,9 @@ const Detail = () => {
           title: (result.data && result.data.title) || "文章详情",
         });
 
-        Taro.hideLoading();
+        setTimeout(() => {
+          Taro.hideLoading();
+        }, 1000);
       })
       .catch((err) => {
         // handle error
@@ -111,6 +110,17 @@ const Detail = () => {
         Taro.hideLoading();
       });
   }, [listPageData.filename]);
+
+  // useEffect(() => {
+  //   const el = document.getElementById("md");
+  //   function testOnTap(event) {}
+
+  //   el.addEventListener("tap", testOnTap);
+
+  //   return () => {
+  //     el.removeEventListener("tap", testOnTap);
+  //   };
+  // }, []);
 
   return (
     <View id="md" className="markdown-body">
