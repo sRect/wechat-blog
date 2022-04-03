@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useReady } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { Button, Image } from "antd-mobile";
 import LIST_PNG from "@/src/assets/img/list.png";
@@ -11,6 +11,47 @@ const DEFAULT_BASE64 =
 
 function Index() {
   const h1Ref = useRef(null);
+
+  useReady(() => {
+    // 小程序新版本检测
+    if (!Taro.canIUse("getUpdateManager")) {
+      Taro.showModal({
+        title: "提示",
+        content: "当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试",
+        showCancel: false,
+      });
+      return;
+    }
+
+    // https://developers.weixin.qq.com/miniprogram/dev/api/base/update/UpdateManager.html
+    const updateManager = Taro.getUpdateManager();
+
+    updateManager.onCheckForUpdate((res) => {
+      // 请求完新版本信息的回调
+      if (res.hasUpdate) {
+        updateManager.onUpdateReady(function () {
+          Taro.showModal({
+            title: "更新提示",
+            content: "新版本已经准备好，是否重启应用？",
+            success: function (inRes) {
+              if (inRes.confirm) {
+                // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+                updateManager.applyUpdate();
+              }
+            },
+          });
+        });
+
+        updateManager.onUpdateFailed(function () {
+          // 新版本下载失败
+          Taro.showModal({
+            title: "更新提示",
+            content: "新版本已上线，请删除当前小程序，重新搜索打开",
+          });
+        });
+      }
+    });
+  });
 
   return (
     <View className={styles.wrapper}>
