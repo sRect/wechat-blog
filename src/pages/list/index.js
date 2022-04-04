@@ -84,7 +84,7 @@ const List = () => {
     dispatchPageData(setFilename(fileName));
 
     Taro.navigateTo({
-      url: "/pages/detail/index",
+      url: "/pages/detail/index?filename=" + fileName,
     });
   };
 

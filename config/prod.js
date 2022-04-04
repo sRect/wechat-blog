@@ -16,7 +16,7 @@ module.exports = {
       } else {
         chain.plugin("terser").use(TerserPlugin, [
           {
-            exclude: ["src/component/wemark/wemark.js"],
+            exclude: ["../src/component/wemark/wemark.js"],
             // https://www.npmjs.com/package/terser-webpack-plugin#terseroptionsco
             terserOptions: {
               mangle: true,

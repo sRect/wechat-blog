@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { Context } from "@/src/store";
 import "./index.css";
@@ -9,6 +9,7 @@ import "./index.css";
 const Detail = () => {
   const { listPageData } = useContext(Context);
   const [mdStr, setMdStr] = useState("");
+  const router = useRouter();
 
   // useReady(() => {
   //   setTimeout(() => {
@@ -23,7 +24,7 @@ const Detail = () => {
   // });
 
   useEffect(() => {
-    if (!listPageData.filename) {
+    if (!listPageData.filename && !router.params.filename) {
       Taro.hideLoading();
       return;
     }
@@ -72,7 +73,9 @@ const Detail = () => {
         name: "add",
         // 传递给云函数的event参数
         data: {
-          fileID: `${MD_CLOUD_PATH}${listPageData.filename}.md`,
+          fileID: `${MD_CLOUD_PATH}${
+            router.params.filename || listPageData.filename
+          }.md`,
         },
       })
       .then(async (res) => {
