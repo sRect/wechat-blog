@@ -11,6 +11,29 @@ const Detail = () => {
   const [mdStr, setMdStr] = useState("");
   const router = useRouter();
 
+  // 链接复制
+  const onMyEvent = (e) => {
+    console.log(e);
+    if (
+      e.detail &&
+      e.detail.currentTarget &&
+      e.detail.currentTarget.dataset &&
+      e.detail.currentTarget.dataset.url
+    ) {
+      const str = e.detail.currentTarget.dataset.url;
+
+      Taro.setClipboardData({
+        data: str,
+        success() {
+          Taro.showToast({
+            title: "链接复制成功",
+            icon: "success",
+          });
+        },
+      });
+    }
+  };
+
   // useReady(() => {
   //   setTimeout(() => {
   //     Taro.createSelectorQuery()
@@ -112,7 +135,7 @@ const Detail = () => {
         console.log(err);
         Taro.hideLoading();
       });
-  }, [listPageData.filename]);
+  }, [listPageData.filename, router.params.filename]);
 
   // useEffect(() => {
   //   const el = document.getElementById("md");
@@ -127,7 +150,14 @@ const Detail = () => {
 
   return (
     <View id="md" className="markdown-body">
-      <wemark md={mdStr} link highlight type="wemark" />
+      <wemark
+        id="wemark"
+        md={mdStr}
+        link
+        highlight
+        type="wemark"
+        onMyEvent={onMyEvent}
+      />
     </View>
   );
 };
