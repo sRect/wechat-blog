@@ -156,7 +156,7 @@ const Detail = () => {
         link
         highlight
         type="wemark"
-        onMyEvent={onMyEvent}
+        onMyevent={onMyEvent}
       />
     </View>
   );
