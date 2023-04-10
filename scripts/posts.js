@@ -13,6 +13,7 @@ const { nanoid } = require("nanoid");
 // const remarkGfm = require("remark-gfm");
 
 const publicRoot = path.join(process.cwd(), "public");
+const assetsRoot = path.join(process.cwd(), "assets");
 
 const getTimeStamp = (date) => new Date(date).getTime();
 
@@ -24,13 +25,14 @@ async function getAllPostIds() {
     const fullPath = path.join(`${publicRoot}/md`, fileName);
     const matterResult = matter.read(fullPath);
 
-    const { data } = matterResult;
+    const { data, content } = matterResult;
 
     return {
       id: nanoid(),
       ...data,
       keywords: data.keywords.split(","),
       fileName: fileName.replace(/\.md$/, ""),
+      content,
     };
   });
 
@@ -41,7 +43,7 @@ async function getAllPostIds() {
   return sortArr.reverse();
 }
 
-// // 文件详情
+// 文件详情
 // async function getPostData(id) {
 //   const fullPath = path.join(mdRoot, `${id}.md`);
 
@@ -50,25 +52,25 @@ async function getAllPostIds() {
 
 //   const matterResult = matter.read(fullPath);
 
-//   // https://github.com/wataru-chocola/remark-extended-table
-//   const processedContent = await remark()
-//     .use(html)
-//     .use(remarkParse)
-//     .use(remarkGfm)
-//     .use(remarkExtendedTable)
-//     .use(remarkRehype, null, {
-//       handlers: Object.assign({}, extendedTableHandlers),
-//     })
-//     .use(rehypeStringify)
-//     .process(matterResult.content);
+//   // // https://github.com/wataru-chocola/remark-extended-table
+//   // const processedContent = await remark()
+//   //   .use(html)
+//   //   .use(remarkParse)
+//   //   .use(remarkGfm)
+//   //   .use(remarkExtendedTable)
+//   //   .use(remarkRehype, null, {
+//   //     handlers: Object.assign({}, extendedTableHandlers),
+//   //   })
+//   //   .use(rehypeStringify)
+//   //   .process(matterResult.content);
 
-//   const contentHtml = processedContent.toString();
+//   // const contentHtml = processedContent.toString();
 
-//   return {
-//     id,
-//     contentHtml,
-//     ...matterResult.data,
-//   };
+//   // return {
+//   //   id,
+//   //   contentHtml,
+//   //   ...matterResult.data,
+//   // };
 // }
 
 (async function () {
@@ -76,7 +78,7 @@ async function getAllPostIds() {
     const allPostIds = await getAllPostIds();
     // console.log(JSON.stringify(allPostIds));
 
-    const writerStream = fs.createWriteStream(`${publicRoot}/json/list.json`);
+    const writerStream = fs.createWriteStream(`${assetsRoot}/json/list.json`);
     writerStream.write(`{"list": ${JSON.stringify(allPostIds)}}`, "utf8");
     writerStream.end();
     writerStream.on("finish", function () {

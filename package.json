@@ -9,8 +9,9 @@
     "css": "less"
   },
   "scripts": {
-    "gen:json": "cross-env GEN_TYPE_ENV=json node posts",
+    "prebuild:weapp": "cross-env GEN_TYPE_ENV=json node ./scripts/posts",
     "build:weapp": "cross-env DEV_MODE_ENV=false taro build --type weapp",
+    "postbuild:weapp": "node ./scripts/copyImgFile.js && node scripts/miniprogram.js build",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
     "build:tt": "taro build --type tt",
@@ -19,7 +20,9 @@
     "build:qq": "taro build --type qq",
     "build:jd": "taro build --type jd",
     "build:quickapp": "taro build --type quickapp",
+    "predev:weapp": "echo -e '\u001b[32m工程启动后会自动打开微信开发者工具,如果自动打开失败,请手动打开开发者工具\u001b[0m' && node scripts/miniprogram.js dev",
     "dev:weapp": "cross-env NODE_ENV=production DEV_MODE_ENV=true taro build --type weapp --watch",
+    "postdev:weapp": "node ./scripts/copyImgFile.js",
     "dev:swan": "npm run build:swan -- --watch",
     "dev:alipay": "npm run build:alipay -- --watch",
     "dev:tt": "npm run build:tt -- --watch",
@@ -74,6 +77,8 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "miniprogram-automator": "^0.12.0",
+    "shelljs": "^0.8.5",
     "stylelint": "9.3.0",
     "terser-webpack-plugin": "4.2.3",
     "webpack-bundle-analyzer": "^4.5.0"

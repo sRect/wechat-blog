@@ -42,6 +42,8 @@ function getConf() {
     outputRoot: "dist",
     alias: {
       "@/src": path.resolve(__dirname, "../src"),
+      "@/public": path.resolve(__dirname, "../public"),
+      "@/assets": path.resolve(__dirname, "../assets"),
     },
     plugins: [
       [

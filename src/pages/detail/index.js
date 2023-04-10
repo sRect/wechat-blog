@@ -4,12 +4,11 @@ import { View } from "@tarojs/components";
 import { Context } from "@/src/store";
 import "./index.css";
 
-/* global MD_CLOUD_PATH */
-
 const Detail = () => {
   const { listPageData } = useContext(Context);
   const [mdStr, setMdStr] = useState("");
   const router = useRouter();
+  const userselect = true;
 
   // 链接复制
   const onMyEvent = (e) => {
@@ -34,18 +33,6 @@ const Detail = () => {
     }
   };
 
-  // useReady(() => {
-  //   setTimeout(() => {
-  //     Taro.createSelectorQuery()
-  //       .select(".markdown-body")
-  //       .node((res) => {
-  //         console.log("==>");
-  //         console.log(res);
-  //       })
-  //       .exec();
-  //   }, 1500);
-  // });
-
   useEffect(() => {
     if (!listPageData.filename && !router.params.filename) {
       Taro.hideLoading();
@@ -57,106 +44,48 @@ const Detail = () => {
       mask: true,
     });
 
-    // Taro.cloud.downloadFile({
-    //   fileID: `${MD_CLOUD_PATH}${listPageData.filename}.md`,
-    //   success: (res) => {
-    //     const fs = Taro.getFileSystemManager();
+    import(`@/assets/json/list.json`)
+      .then((res) => {
+        const list = res.default.list;
 
-    //     if (!res.tempFilePath) return;
+        const obj = list.find(
+          (item) =>
+            item.fileName === (router.params.filename || listPageData.filename)
+        );
 
-    //     fs.readFile({
-    //       filePath: res.tempFilePath,
-    //       encoding: "utf8",
-    //       success: (readFileRes) => {
-    //         console.log(readFileRes);
-    //         const str = readFileRes.data;
-    //         const matterResult = matter(str);
+        console.log(obj);
 
-    //         console.log(matterResult);
-    //       },
-    //       fail: (readFileErr) => {
-    //         console.log(readFileErr);
-
-    //         Taro.hideLoading();
-    //       },
-    //       complete() {
-    //         Taro.hideLoading();
-    //       },
-    //     });
-    //   },
-    //   fail(err) {
-    //     console.log(err);
-    //     Taro.hideLoading();
-    //   },
-    // });
-
-    Taro.cloud
-      .callFunction({
-        // 要调用的云函数名称
-        name: "add",
-        // 传递给云函数的event参数
-        data: {
-          fileID: `${MD_CLOUD_PATH}${
-            router.params.filename || listPageData.filename
-          }.md`,
-        },
-      })
-      .then(async (res) => {
-        // output: res.result === 3
-        console.log("res==>", res);
-        const { result } = res;
-
-        // https://github.com/wataru-chocola/remark-extended-table
-        // const processedContent = await remark()
-        //   .use(html)
-        //   // .use(remarkParse)
-        //   // .use(remarkGfm)
-        //   // .use(remarkExtendedTable)
-        //   // .use(remarkRehype, null, {
-        //   //   handlers: Object.assign({}, extendedTableHandlers),
-        //   // })
-        //   // .use(rehypeStringify)
-        //   .process(result.content);
-
-        // const contentHtml = processedContent.toString();
-
-        setMdStr(result.content);
+        setMdStr(obj.content);
 
         Taro.setNavigationBarTitle({
-          title: (result.data && result.data.title) || "文章详情",
+          title: obj.title || "文章详情",
         });
 
-        setTimeout(() => {
-          Taro.hideLoading();
-        }, 1000);
+        // setTimeout(() => {
+        //   Taro.hideLoading();
+        // }, 1000);
+        // Taro.pageScrollTo({scrollTop: 0})
       })
       .catch((err) => {
-        // handle error
         console.log(err);
         Taro.hideLoading();
       });
   }, [listPageData.filename, router.params.filename]);
-
-  // useEffect(() => {
-  //   const el = document.getElementById("md");
-  //   function testOnTap(event) {}
-
-  //   el.addEventListener("tap", testOnTap);
-
-  //   return () => {
-  //     el.removeEventListener("tap", testOnTap);
-  //   };
-  // }, []);
 
   return (
     <View id="md" className="markdown-body">
       <wemark
         id="wemark"
         md={mdStr}
+        userselect={userselect}
         link
         highlight
         type="wemark"
         onMyevent={onMyEvent}
+        onRenderend={() => {
+          console.log("onRenderend");
+          Taro.hideLoading();
+        }}
       />
     </View>
   );

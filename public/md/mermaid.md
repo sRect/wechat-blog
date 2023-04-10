@@ -8,7 +8,7 @@ mermaid 流程图 + 饼图使用
 
 # img
 
-![img](cloud://env-7grplnfr5d33d356.656e-env-7grplnfr5d33d356-1256121307/img/mermaid/test5.png)
+![img](../img/mermaid/test5.png)
 
 ## table
 

@@ -22,6 +22,10 @@ Component({
       type: Boolean,
       value: false,
     },
+    userselect: {
+      type: Boolean,
+      value: false,
+    },
   },
   data: {
     parsedData: {},
@@ -36,9 +40,14 @@ Component({
         });
         // console.log('parsedData:', parsedData);
         if (this.data.type === "wemark") {
-          this.setData({
-            parsedData,
-          });
+          this.setData(
+            {
+              parsedData,
+            },
+            () => {
+              this.triggerEvent("renderend");
+            }
+          );
         } else {
           // var inTable = false;
           var richTextNodes = getRichTextNodes(parsedData);

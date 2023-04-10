@@ -12,10 +12,11 @@ import {
 } from "antd-mobile";
 import { sleep } from "antd-mobile/es/utils/sleep";
 import { actions, Context } from "@/src/store";
-// import pageListJson from "@/public/json/list.json";
 import styles from "./List.module.less";
 
 const tagColors = ["default", "primary", "success", "warning", "danger"];
+
+/* global JSON_CLOUD_PATH */
 
 const List = () => {
   const { setFilename, setListScrollTop } = actions;
@@ -29,22 +30,51 @@ const List = () => {
 
   // 列表刷新
   const handleRefresh = (cb) => {
-    import("@/assets/json/list.json")
-      .then((res) => {
-        setPageList(res.default.list);
+    Taro.cloud.downloadFile({
+      fileID: JSON_CLOUD_PATH,
+      success: (res) => {
+        const fs = Taro.getFileSystemManager();
 
-        cb && cb();
-      })
-      .catch(() => {
+        if (!res.tempFilePath) return;
+
+        fs.readFile({
+          filePath: res.tempFilePath,
+          encoding: "utf8",
+          success: (readFileRes) => {
+            const objStr = readFileRes.data;
+            const obj = (objStr && JSON.parse(objStr)) || {};
+            const list = obj.list || [];
+
+            setPageList(list);
+
+            cb && cb();
+          },
+          fail: (readFileErr) => {
+            console.log(readFileErr);
+
+            Taro.showToast({
+              title: "列表加载异常",
+              icon: "error",
+              mask: true,
+            });
+          },
+          complete() {
+            setSkeletonLoading(false);
+          },
+        });
+      },
+      fail(err) {
+        console.log(err);
+        setSkeletonLoading(false);
+        setPageList([]);
+
         Taro.showToast({
           title: "列表加载异常",
           icon: "error",
           mask: true,
         });
-      })
-      .finally(() => {
-        setSkeletonLoading(false);
-      });
+      },
+    });
   };
 
   const handleGotoDetail = (data) => {
@@ -88,11 +118,6 @@ const List = () => {
 
             handleRefresh(async () => {
               await sleep(1500);
-              Taro.showToast({
-                title: "刷新成功",
-                icon: "none",
-                mask: true,
-              });
               setRefresherTriggered(false);
             });
           }}

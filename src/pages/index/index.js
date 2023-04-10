@@ -64,7 +64,7 @@ function Index() {
       ></Image> */}
       <View className={styles.container}>
         <Text className={styles.header} ref={h1Ref}>
-          前端练习生
+          只因练习生
         </Text>
 
         <View className={styles.content}>

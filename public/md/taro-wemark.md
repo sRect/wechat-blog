@@ -26,7 +26,7 @@ const Detail = () => {
 };
 ```
 
-![ ](cloud://env-7grplnfr5d33d356.656e-env-7grplnfr5d33d356-1256121307/img/taro-wemark/link.png)
+![ ](../img/taro-wemark/link.png)
 
 如上图显示，就是想在点击的时候，拿到链接里的 url。
 
@@ -185,7 +185,7 @@ const Detail = () => {
 };
 ```
 
-![ ](cloud://env-7grplnfr5d33d356.656e-env-7grplnfr5d33d356-1256121307/img/taro-wemark/dataset.png)
+![ ](../img/taro-wemark/dataset.png)
 
 - 至此，解决了这个小需求
 
