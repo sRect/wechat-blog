@@ -1,5 +1,5 @@
 export default {
-  navigationBarTitleText: "文章列表",
+  navigationBarTitleText: "备忘笔记",
   enableShareAppMessage: true,
   enableShareTimeline: true,
   disableSwipeBack: false,

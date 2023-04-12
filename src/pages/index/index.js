@@ -90,7 +90,7 @@ function Index() {
                 placeholder={DEFAULT_BASE64}
                 className={styles.icon}
               />
-              文章列表
+              备忘笔记
             </Button>
           </View>
           <View>
