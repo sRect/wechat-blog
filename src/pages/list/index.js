@@ -2,20 +2,27 @@ import { useState, useEffect, useContext } from "react";
 import Taro from "@tarojs/taro";
 import { View, Text, ScrollView } from "@tarojs/components";
 import {
-  List as AntdList,
+  List as TaroList,
   Skeleton,
+  ConfigProvider,
   Tag,
   Space,
-  // Toast,
-  ErrorBlock,
-  Divider,
-} from "antd-mobile";
-import { sleep } from "antd-mobile/es/utils/sleep";
+  Cell,
+} from "@taroify/core";
+import { Arrow } from "@taroify/icons";
 import { actions, Context } from "@/src/store";
+import { sleep } from "@/src/utils/index";
 // import pageListJson from "@/public/json/list.json";
 import styles from "./List.module.less";
 
-const tagColors = ["default", "primary", "success", "warning", "danger"];
+const tagColors = [
+  "default",
+  "primary",
+  "success",
+  "warning",
+  "danger",
+  "info",
+];
 
 const List = () => {
   const { setFilename, setListScrollTop } = actions;
@@ -26,6 +33,9 @@ const List = () => {
 
   const [scrollTop, setScrollTop] = useState(0);
   const [refresherTriggered, setRefresherTriggered] = useState(false);
+
+  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // 列表刷新
   const handleRefresh = (cb) => {
@@ -44,6 +54,8 @@ const List = () => {
       })
       .finally(() => {
         setSkeletonLoading(false);
+        setLoading(false);
+        setHasMore(false);
       });
   };
 
@@ -65,97 +77,98 @@ const List = () => {
   }, []);
 
   return (
-    <View className={styles.wrapper}>
-      {skeletonLoading ? (
-        <Skeleton.Paragraph lineCount={50} animated />
-      ) : (
-        <ScrollView
-          className="scrollview"
-          scrollY
-          scrollX={false}
-          scrollTop={scrollTop}
-          style={{ height: "100vh" }}
-          enableBackToTop
-          scrollWithAnimation
-          refresherEnabled
-          refresherThreshold={40}
-          refresherBackground="#cccccc"
-          refresherTriggered={refresherTriggered}
-          onScroll={({ scrollTop: scrollTopNum }) => setScrollTop(scrollTopNum)}
-          onScrollToLower={() => console.log("到底了")}
-          onRefresherRefresh={() => {
-            setRefresherTriggered(true);
+    <ConfigProvider
+      theme={{
+        skeletonHeight: "100vh",
+      }}
+    >
+      <View className={styles.wrapper}>
+        {skeletonLoading ? (
+          <Skeleton animation="wave" />
+        ) : (
+          <ScrollView
+            className="scrollview"
+            scrollY
+            scrollX={false}
+            scrollTop={scrollTop}
+            style={{ height: "100vh" }}
+            enableBackToTop
+            scrollWithAnimation
+            refresherEnabled
+            refresherThreshold={40}
+            refresherBackground="#cccccc"
+            refresherTriggered={refresherTriggered}
+            onScroll={({ scrollTop: scrollTopNum }) =>
+              setScrollTop(scrollTopNum)
+            }
+            onScrollToLower={() => console.log("到底了")}
+            onRefresherRefresh={() => {
+              setRefresherTriggered(true);
 
-            handleRefresh(async () => {
-              await sleep(1500);
-              Taro.showToast({
-                title: "刷新成功",
-                icon: "none",
-                mask: true,
+              handleRefresh(async () => {
+                await sleep(1500);
+                Taro.showToast({
+                  title: "刷新成功",
+                  icon: "none",
+                  mask: true,
+                });
+                setRefresherTriggered(false);
+                setLoading(false);
               });
-              setRefresherTriggered(false);
-            });
-          }}
-          onRefresherRestore={() => {
-            console.log("onRefresherRestore");
-          }}
-          onRefresherAbort={() => {
-            console.log("onRefresherAbort");
-          }}
-        >
-          {pageList.length ? (
-            <AntdList>
-              {pageList.map((item) => {
-                return (
-                  <View key={item.id}>
-                    <AntdList.Item
-                      className={styles.listItem}
+            }}
+            onRefresherRestore={() => {
+              console.log("onRefresherRestore");
+            }}
+            onRefresherAbort={() => {
+              console.log("onRefresherAbort");
+            }}
+          >
+            <TaroList
+              loading={loading}
+              hasMore={hasMore}
+              onLoad={() => {
+                setLoading(true);
+              }}
+            >
+              <>
+                {pageList.map((item) => {
+                  return (
+                    <Cell
+                      key={item.id}
+                      rightIcon={<Arrow />}
                       clickable
                       onClick={() => handleGotoDetail(item)}
-                      arrow={
-                        <View
-                          className={`${styles.arrow} ${styles.arrowRight}`}
-                        />
-                      }
-                      description={
-                        <>
-                          <View style={{ margin: "6px 0" }}>
-                            <Space>
-                              {item.keywords.map((keywords, index) => (
-                                <Tag
-                                  color={
-                                    tagColors[Math.floor(Math.random() * 6)]
-                                  }
-                                  key={index}
-                                >
-                                  {keywords}
-                                </Tag>
-                              ))}
-                            </Space>
-                          </View>
-                          <Text>{item.date}</Text>
-                        </>
-                      }
                     >
-                      {item.title}
-                    </AntdList.Item>
-                    <Divider
-                      style={{
-                        color: "#eee",
-                        borderColor: "#eee",
-                        margin: 0,
-                      }}
-                    />
-                  </View>
-                );
-              })}
-            </AntdList>
-          ) : (
-            <ErrorBlock status="default" title="暂无数据" description={" "} />
-          )}
-        </ScrollView>
-      )}
-    </View>
+                      <View className={styles.listItem}>
+                        <Text className={styles.title}>{item.title}</Text>
+                        <View>
+                          <Space>
+                            {item.keywords.map((keywords, index) => (
+                              <Tag
+                                shape="rounded"
+                                key={index}
+                                color={tagColors[Math.floor(Math.random() * 6)]}
+                              >
+                                {keywords}
+                              </Tag>
+                            ))}
+                          </Space>
+                        </View>
+                        <Text className={styles.date}>{item.date}</Text>
+                      </View>
+                    </Cell>
+                  );
+                })}
+
+                <TaroList.Placeholder>
+                  {!hasMore && "没有更多了"}
+                </TaroList.Placeholder>
+              </>
+            </TaroList>
+          </ScrollView>
+        )}
+      </View>
+    </ConfigProvider>
   );
 };
 

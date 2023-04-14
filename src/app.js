@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"; // eslint-disable-line
-import { ConfigProvider, SafeArea } from "antd-mobile";
-import zhCN from "antd-mobile/es/locales/zh-CN";
+import { SafeArea } from "@taroify/core";
 import { useImmerReducer } from "use-immer";
 
 // Taro 额外添加的 hooks 要从 '@tarojs/taro' 中引入
@@ -11,7 +10,8 @@ import Taro, { useDidShow, useDidHide } from "@tarojs/taro";
 // import configStore from "./store";
 
 import { reducers, states, Context } from "@/src/store";
-
+// import "antd-mobile/es/global/css-vars-patch.css";
+// import "antd-mobile/bundle/style.css";
 // 全局样式
 import "./app.less";
 
@@ -43,16 +43,14 @@ function App(props) {
 
   return (
     // 在入口组件不会渲染任何内容，但我们可以在这里做类似于状态管理的事情
-    <ConfigProvider locale={zhCN}>
-      <Context.Provider
-        value={{ contObj, dispatchCount, listPageData, dispatchPageData }}
-      >
-        <SafeArea position="top" />
-        {/* props.children 是将要被渲染的页面 */}
-        {props.children}
-        <SafeArea position="bottom" />
-      </Context.Provider>
-    </ConfigProvider>
+    <Context.Provider
+      value={{ contObj, dispatchCount, listPageData, dispatchPageData }}
+    >
+      <SafeArea position="top" />
+      {/* props.children 是将要被渲染的页面 */}
+      {props.children}
+      <SafeArea position="bottom" />
+    </Context.Provider>
   );
 }
 

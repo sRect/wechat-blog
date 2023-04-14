@@ -28,17 +28,24 @@ function openMiniProgram() {
       // projectPath: `/Users/fangchaoqun/pro/net_hospital_minapp_web/dist/${argv[0]}/mp-weixin`, // 项目文件地址
       projectPath: projectPath, // 项目文件地址
     })
-    .then(async (miniProgram) => {
+    .then((miniProgram) => {
       console.log("启动微信开发者工具中，请耐心等待...");
-      const page = await miniProgram.navigateTo(`/pages/index/index`);
-      // await page.waitFor(500);
-      // const element = await page.$(".kind-list-item-hd");
-      // console.log(await element.attribute("class"));
-      // await element.tap();
+      const homeFilePath = path.relative(projectPath, "./pages/index/index");
+      stat(homeFilePath, async (err) => {
+        if (err) {
+          return process.exit();
+        }
 
-      // await miniProgram.close();
-      console.log("启动微信开发者工具成功");
-      process.exit();
+        const page = await miniProgram.navigateTo(`/pages/index/index`);
+        // await page.waitFor(500);
+        // const element = await page.$(".kind-list-item-hd");
+        // console.log(await element.attribute("class"));
+        // await element.tap();
+
+        // await miniProgram.close();
+        console.log("启动微信开发者工具成功");
+        process.exit();
+      });
     })
     .catch((err) => {
       console.log("微信开发者工具打开异常，请尝试手动打开项目");

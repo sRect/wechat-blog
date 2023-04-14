@@ -49,6 +49,7 @@ function getConf() {
       [
         "@tarojs/plugin-html",
         {
+          // https://taro-docs.jd.com/docs/use-h5#pxtransformblacklist
           // 过滤 antd 组件库的前缀：am-
           pxtransformBlackList: [/adm-/, /am-/, /^body/],
         },
