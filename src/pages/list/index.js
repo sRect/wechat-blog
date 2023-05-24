@@ -137,6 +137,7 @@ const List = () => {
                       key={item.id}
                       rightIcon={<Arrow />}
                       clickable
+                      align="center"
                       onClick={() => handleGotoDetail(item)}
                     >
                       <View className={styles.listItem}>

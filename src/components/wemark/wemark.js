@@ -78,5 +78,8 @@ Component({
     onTap: function (e) {
       this.triggerEvent("myevent", e);
     },
+    handleCopy: function (e) {
+      this.triggerEvent("myevent2", e);
+    },
   },
 });

@@ -8,7 +8,6 @@ const Detail = () => {
   const { listPageData } = useContext(Context);
   const [mdStr, setMdStr] = useState("");
   const router = useRouter();
-  const userselect = true;
 
   // 链接复制
   const onMyEvent = (e) => {
@@ -30,6 +29,53 @@ const Detail = () => {
           });
         },
       });
+    }
+  };
+
+  // 复制代码
+  const onMyevent2 = (e) => {
+    console.log(e);
+    if (
+      e &&
+      e.mpEvent.detail.target &&
+      e.mpEvent.detail.target.dataset &&
+      e.mpEvent.detail.target.dataset.code
+    ) {
+      let code = e.mpEvent.detail.target.dataset.code;
+      console.log("code", code);
+
+      if (typeof code === "string") {
+        Taro.setClipboardData({
+          data: code,
+          fail: (err) => {
+            console.log(err);
+            Taro.showToast({
+              title: "复制失败",
+              icon: "error",
+            });
+          },
+        });
+      } else if (typeof code === "object" && Array.isArray(code)) {
+        let str = "";
+        code.forEach((v) => {
+          if (v && typeof v === "object") {
+            str += v.content;
+          } else {
+            str += v;
+          }
+        });
+
+        Taro.setClipboardData({
+          data: str,
+          fail: (err) => {
+            console.log(err);
+            Taro.showToast({
+              title: "复制失败",
+              icon: "error",
+            });
+          },
+        });
+      }
     }
   };
 
@@ -77,7 +123,7 @@ const Detail = () => {
       <wemark
         id="wemark"
         md={mdStr}
-        userselect={userselect}
+        // userselect={userselect}
         link
         highlight
         type="wemark"
@@ -86,6 +132,7 @@ const Detail = () => {
           console.log("onRenderend");
           Taro.hideLoading();
         }}
+        onMyevent2={onMyevent2}
       />
     </View>
   );
