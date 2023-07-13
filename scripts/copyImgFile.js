@@ -36,8 +36,12 @@ async function copyImgFile() {
 
     if (error.code === "ENOENT" && error.syscall === "stat") {
       console.warn("目标文件夹不存在，即将创建");
-      await fsPromise.mkdir(destRoot);
-      await copyImgFile();
+      try {
+        await fsPromise.mkdir(destRoot);
+        await copyImgFile();
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     process.exit(1);

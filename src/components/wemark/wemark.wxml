@@ -9,7 +9,7 @@
         <text user-select="{{userselect}}" class="wemark_inline_code_{{renderInline.type}}" wx:if="{{renderInline.type&&renderBlock.highlight}}">{{renderInline.content}}</text>
         <text user-select="{{userselect}}" class="wemark_inline_code_text" wx:if="{{!renderInline.type}}">{{renderInline}}</text>
         <navigator bindtap="onTap" class="wemark_inline_link" url="{{renderInline.data.href}}" wx:if="{{renderInline.type === 'link'}}" data-url="{{renderInline.data.href}}">{{renderInline.content}}</navigator>
-        <image mode="widthFix" class="wemark_inline_image" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}"></image>
+        <image mode="widthFix" show-menu-by-longpress="{{renderInline.showMenuByLongpress}}" class="wemark_inline_image" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}"></image>
       </block>
       <block wx:if="{{!renderBlock.isArray}}">
         <view wx:if="{{renderBlock.type === 'code'}}">{{renderBlock.content}}</view>
@@ -25,7 +25,7 @@
         <text user-select="{{userselect}}" class="wemark_inline_code_{{renderInline.type}}" wx:if="{{renderInline.type&&renderBlock.highlight}}">{{renderInline.content}}</text>
         <text user-select="{{userselect}}" class="wemark_inline_code_text" wx:if="{{!renderInline.type}}">{{renderInline}}</text>
         <navigator bindtap="onTap" class="wemark_inline_link" url="{{renderInline.data.href}}" wx:if="{{renderInline.type === 'link'}}" data-url="{{renderInline.data.href}}">{{renderInline.content}}</navigator>
-        <image mode="widthFix" class="wemark_inline_image" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}"></image>
+        <image mode="widthFix" show-menu-by-longpress="{{renderInline.showMenuByLongpress}}" class="wemark_inline_image" src="{{renderInline.src}}" wx:if="{{renderInline.type === 'image'}}"></image>
       </block>
       <block wx:if="{{!renderBlock.isArray}}">
         <view wx:if="{{renderBlock.type === 'code'}}">{{renderBlock.content}}</view>

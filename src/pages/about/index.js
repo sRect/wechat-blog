@@ -3,7 +3,7 @@ import { View } from "@tarojs/components";
 import { useLoad, getAccountInfoSync } from "@tarojs/taro";
 import { Image, Space, Button, Cell, ConfigProvider } from "@taroify/core";
 import { actions, Context } from "@/src/store";
-import ABOUT_PNG from "@/src/assets/img/test2.png";
+import ABOUT_PNG from "@/src/assets/img/gzh_qrcode.jpg";
 import styles from "./About.module.less";
 
 function UseImmerReducer() {
@@ -29,7 +29,11 @@ function UseImmerReducer() {
             src={ABOUT_PNG}
             style={{ width: "12rem", height: "12rem" }}
             alt="about"
+            show-menu-by-longpress
           />
+          <View style={{ fontSize: "12px", color: "#666" }}>
+            长按识别关注公众号
+          </View>
         </View>
 
         <View>

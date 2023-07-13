@@ -1,5 +1,5 @@
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
@@ -10,9 +10,9 @@ module.exports = {
   mini: {
     webpackChain(chain, webpack) {
       if (process.env.DEV_MODE_ENV === "true") {
-        chain.plugin("analyzer").use(BundleAnalyzerPlugin, [], {
-          openAnalyzer: true,
-        });
+        // chain.plugin("analyzer").use(BundleAnalyzerPlugin, [], {
+        //   openAnalyzer: true,
+        // });
       } else {
         chain.plugin("terser").use(TerserPlugin, [
           {

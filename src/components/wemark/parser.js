@@ -90,9 +90,10 @@ function parse(md, options){
 					}
 				}else if(token.type === 'image'){
 					ret.push({
-						type: token.type,
-						src: token.src
-					});
+            type: token.type,
+            src: token.src,
+            showMenuByLongpress: token.src && token.src.includes('gzh_qrcode') ? true : false
+          });
 				}
 			});
 		}
