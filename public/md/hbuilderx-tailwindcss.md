@@ -485,7 +485,146 @@ executeTailWindCssSh();
 module.exports = {};
 ```
 
-## 4.参考资料
+## 4. 关于小程序中部分class名称转义字符报错
+
+报错如下图：
+
+![](../img/hbuilderx-tailwindcss/unexpected.png)
+
+解决：使用[@dcasia/mini-program-tailwind-webpack-plugin](https://www.craft.me/s/Wx2f9cjGwyZYOx/b/8FAEAC64-E760-4915-9582-C0560E2972D9/%E2%9A%99%EF%B8%8F-%E5%B8%B8%E8%A7%84-Webpack-%E7%B1%BB%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88%E4%BB%A5-MPX-%E4%B8%BA%E4%BE%8B%EF%BC%89) webpack 插件解决
+
+1. 安装
+```
+npm i @dcasia/mini-program-tailwind-webpack-plugin -D
+```
+
+2. 配置
+
+```javascript
+// vue.config.js
+const MiniProgramTailwindWebpackPlugin = require("@dcasia/mini-program-tailwind-webpack-plugin");
+
+module.exports = {
+	configureWebpack: {
+		plugins: [
+			new MiniProgramTailwindWebpackPlugin({})
+		]
+	}
+};
+```
+
+这样就ok了，如果需要深入自定义些，可以引入[mini-program-tailwind](https://github.com/dcasia/mini-program-tailwind/blob/development/src/index.ts)的`handleTemplate`和`handleStyle`方法，自定义一个webpacka plugin
+
+```javascript
+const { handleTemplate, handleStyle } = require('@dcasia/mini-program-tailwind-webpack-plugin/universal-handler');
+
+function isStyleFile (filename) {
+	return /.+\.(?:wx|ac|jx|tt|q|c)ss$/.test(filename);
+}
+
+function isTemplateFile(filename) {
+    return /.+\.(wx|ax|jx|ks|tt|q)ml$/.test(filename);
+}
+
+class TailwindCssClassRenamePlugin {
+	constructor() {
+		this.options = { 
+			enableRpx: false,
+			designWidth: 375,
+		}
+	}
+		
+  apply(compiler) {
+	  // const isWebpackV5 = compiler.webpack && compiler.webpack.version >= 5;
+	  
+    // 指定一个挂载到 compilation 的钩子，回调函数的参数为 compilation 。
+    compiler.hooks.thisCompilation.tap('tailwind-css-class-rename-plugin',compilation => {
+            compilation.hooks.afterOptimizeAssets.tap('tailwind-css-class-rename-plugin', assets => {
+                        for (const pathname in assets) {
+							const originalSource = assets[ pathname ]
+							const rawSource = originalSource.source().toString()
+
+							let handledSource = ''
+		
+							if (isStyleFile(pathname)) {
+								// 处理样式文件
+                // ...添加自己额外的处理
+								handledSource = handleStyle(rawSource, this.options);
+							} else if (isTemplateFile(pathname)) {
+								// 处理模板文件
+								// ...添加自己额外的处理
+								
+								handledSource = handleTemplate(rawSource, this.options);
+							}
+		
+							if (handledSource) {
+		
+								const source = new ConcatSource(handledSource)
+		
+								compilation.updateAsset(pathname, source)
+		
+							}
+    
+                    }
+    
+                }
+    
+            )
+    
+        }
+    )
+  }
+}
+
+module.exports = {
+	configureWebpack: {
+		plugins: [
+			new TailwindCssClassRenamePlugin()
+		]
+	}
+};
+
+```
+## 5. 关于rem转rpx
+
+1. 其实上面的`@dcasia/mini-program-tailwind-webpack-plugin/universal-handler`插件中的`handleStyle`方法已经自动帮我们处理了rem转rpx
+
+2. 也可以使用[tailwindcss-rem2px-preset](https://weapp-tw.icebreaker.top/docs/quick-start/rem2rpx#2-tailwindcss-rem2px-preset)插件，或者[postcss-rem-to-responsive-pixel](https://weapp-tw.icebreaker.top/docs/quick-start/rem2rpx#1-postcss-rem-to-responsive-pixel-%E6%8E%A8%E8%8D%90)插件，
+它们的区别就是`tailwindcss-rem2px-preset`只是把tailwindcss那些样式class从rem转为rpx，而`postcss-rem-to-responsive-pixel`是把项目中所有的rem都转为rpx，根据自己的项目进行选择
+
+3. 因为这里是使用的`HbuilderX`方式创建的项目，所以选择了`tailwindcss-rem2px-preset`，而`postcss-rem-to-responsive-pixel`是在`postcss.config.js`配置文件里配置的
+
+4 `tailwindcss-rem2px-preset`的安装和使用
+
++ 安装
+```
+npm i -D postcss-rem-to-responsive-pixel
+```
+
++ 使用
+```javascript
+// tailwind.config.js
+module.exports = {
+  presets: [
+    require('tailwindcss-rem2px-preset').createPreset({
+      // 32 意味着 1rem = 32rpx
+      fontSize: 32,
+      // 转化的单位,可以变成 px / rpx
+      unit: 'rpx'
+    })
+  ]
+}
+```
+
+## 6. 关于部分tailwindcss未生效
+
+如果没有在`tailwind.config.js`中配置`tailwindcss-rem2px-preset`这个预设，会发现页面中所有的tailwindcss都未生效，报错是没有了，但是有一部分class样式都没有被引入到项目中，只是在wxml上写了一个空样式
+
+![](../img/hbuilderx-tailwindcss/px.jpg)
+
+解决：这个时候只要在`tailwind.config.js`中配置`tailwindcss-rem2px-preset`这个预设，就ok了
+
+## 7.参考资料
 
 1. [Hbuilder创建的uniapp工程，使用tailwindcss最优雅的方式](https://ask.dcloud.net.cn/article/40098)
 
@@ -494,6 +633,10 @@ module.exports = {};
 3. [child_process.exec](https://nodejs.org/api/child_process.html#child_processexeccommand-options-callback)
 
 4. [Tailwind CLI](https://www.tailwindcss.cn/docs/installation)
+
+5. [weapp-tailwindcss](https://weapp-tw.icebreaker.top/)
+
+6. [Tailwind & Windi CSS Webpack plugin](https://www.craft.me/s/Wx2f9cjGwyZYOx)
 
 ------
 
