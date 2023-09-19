@@ -1451,3 +1451,7 @@ adb reverse tcp:8097 tcp:8097
 ## 9. 总结
 
 练习时长 2 月半，远远不够，app 很粗糙，距离上架还有一段距离，况且代码里现在只兼顾到了 android，忽略了 ios。
+
+------
+
+![img](../img/gzh/gzh_qrcode.jpg)

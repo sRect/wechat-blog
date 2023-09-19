@@ -42,3 +42,7 @@ title Pets adopted by volunteers
 ## 参考
 
 1. [mermaid](https://github.com/mermaid-js/mermaid/blob/develop/README.zh-CN.md)
+
+------
+
+![img](../img/gzh/gzh_qrcode.jpg)

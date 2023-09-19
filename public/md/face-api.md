@@ -4,6 +4,8 @@ keywords: "face-api, 人脸识别, 抖音"
 date: "2022-11-29"
 ---
 
+![](https://mmbiz.qpic.cn/sz_mmbiz_gif/Az6S7PrZXXbWbLo5ibXAWrJdkfdVcLK5p39gudVGviaNpsJ9cWI7mvEUAJm5bpMicGmiacYC6wuuo527YpsaoKJKbQ/640?wx_fmt=gif&wxfrom=5&wx_lazy=1&wx_co=1)
+
 - [在线体验](https://srect.github.io/face-api.js)
 
 - [项目 github 仓库](https://github.com/sRect/face-api.js/tree/dy)
@@ -62,7 +64,7 @@ date: "2022-11-29"
 
 1. 关于 h5`navigator.mediaDevices.getUserMedia` 这个 api，本地开发`localhost`是可以拉起摄像头打开提示的，线上部署必须是`https`节点才行，`http`不能唤起打开摄像头
 
-![](../img/face-api/WX20221128-221028@2x.png)
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXbWbLo5ibXAWrJdkfdVcLK5picj6vyCN0SPmH0dgia3JaiaZkX6NXtKHD9l2IP6Xonb5iclk4Np2sZo8cQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 2. 关于获取到视频流后，`video`视频播放，需要镜面翻转，这个可以通过 css 的`transform: rotateY(180deg)`来翻转
 
@@ -145,7 +147,7 @@ async closeCamera() {
 
 #### 2.3 检测人脸左右倾斜
 
-![](../img/face-api/landmarks.png)
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXbWbLo5ibXAWrJdkfdVcLK5pTWEvqys35czYJur82NESwsAIZeUv3hUSicRFkEQ8SYwCIDibIZOf7WCw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 通过`face-api.js`拿到人脸`landmarks`特征数据后，可以直接拿到左右眼的数据，分别通过求 Y 轴方向的平均值，然后比较这个平均值，便可以简单得出人脸向左还是向右倾斜，简单吧，角度都不用求了！
 
@@ -292,3 +294,7 @@ async handleVideoFaceTracking(cb) {
 1. [face-api.js](https://github.com/justadudewhohacks/face-api.js)
 
 2. [getUserMedia MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#examples)
+
+------
+
+![img](../img/gzh/gzh_qrcode.jpg)

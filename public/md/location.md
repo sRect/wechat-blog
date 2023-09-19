@@ -272,3 +272,7 @@ const HandleLocation = () => {
 
 1. [微信小程序授权](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/authorize.html)
 2. [微信小程序全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#permission)
+
+------
+
+![img](../img/gzh/gzh_qrcode.jpg)

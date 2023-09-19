@@ -364,3 +364,7 @@ new Vue({
   </div>
 </template>
 ```
+
+------
+
+![img](../img/gzh/gzh_qrcode.jpg)

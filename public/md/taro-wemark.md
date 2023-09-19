@@ -26,7 +26,7 @@ const Detail = () => {
 };
 ```
 
-![ ](../img/taro-wemark/link.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_jpg/Az6S7PrZXXZNgtASa5Q5RnRNOXzqIAhWtl0xkMNWiceDZzboiaufe0fwpMYXOyMMVzAW8noujT15aSerE0lIlhdw/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1)
 
 如上图显示，就是想在点击的时候，拿到链接里的 url。
 
@@ -185,7 +185,7 @@ const Detail = () => {
 };
 ```
 
-![ ](../img/taro-wemark/dataset.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXZNgtASa5Q5RnRNOXzqIAhWFHLGyv3ichvyibPch8YfLk7VBYHmRedadS0kz4ZUINXOqK84kcaVmWlw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - 至此，解决了这个小需求
 
@@ -194,3 +194,7 @@ const Detail = () => {
 1. [组件间通信与事件](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/events.html)
 
 2. [原生项目使用 Taro](https://taro-docs.jd.com/taro/docs/taro-in-miniapp/#%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6)
+
+------
+
+![img](../img/gzh/gzh_qrcode.jpg)

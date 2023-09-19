@@ -8,7 +8,7 @@ date: "2022-08-08 22:15:07"
 
 # uniapp 打包 h5 问题总结
 
-![ ](../img/uniapp/banner.jpeg)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_jpg/Az6S7PrZXXYABCicpCXGeLxfhGpB7D4wZibbLqsuaMohsmxXfM4KwDAAmGumqZkKgNLHSJMfAMptRKZicOXOAeibyA/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1)
 
 本文对应操作系统及 hbuilderx 版本等
 
@@ -286,7 +286,7 @@ module.exports = {
 
 如下图所示,chunk-vendors 的组成，是把那些公共的依赖全部都打包在一起了，文件大小达到 1M 以上，严重影响页面加载速度，生成环境上 gzip 压缩后，首页加载也需要将近 10s 左右，令人汗颜。(这里的拆分视具体项目而定)
 
-![ ](../img/uniapp/old-chunk-vendors.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYABCicpCXGeLxfhGpB7D4wZ8dIicL9EoUPj0LN31VASm2PDUUdo1HeUALic9NCFwvo69lK2FNgfxiaFg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - 需要将`@dcloudio`(658kb)拆分为"uni-h5"部分和"vue-cli-plugin-uni"部分
 - 将`core-js`(282kb)单独拆出来
@@ -296,13 +296,13 @@ module.exports = {
 
 入口 index 文件也达到了几乎 350kb，里面有一个大的 pages.json 文件
 
-![ ](../img/uniapp/old-index.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYABCicpCXGeLxfhGpB7D4wZYuZ9TmYtVrjJAWicYVv5FUVjewqtcn0vOetQ293bJwCskdiaYJzSQgfQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - 将`pages.json`(290kb)单独拆出来
 
 在浏览器上看 chunk-vendors，还有一个`buffer`模块
 
-![ ](../img/uniapp/old-chunk-vendors-js.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYABCicpCXGeLxfhGpB7D4wZ1UQqWDBzBDLV6tv1QCxKiauFxRQwQ3yfJomfgYYIqxNmpH6CJb3ZhhA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - 将`buffer`模块单独拆出来
 
@@ -452,7 +452,7 @@ module.exports = {
 
 下图是拆分后 chunk-vendors，和之前对比，那些大模块都被拆分出去了，文件体积也从 1M 多变成了 320kb，首页加载也从 10s 多变成了 3s 左右。
 
-![ ](../img/uniapp/new-chunk-vendors.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYABCicpCXGeLxfhGpB7D4wZhU859NkmC5zSfGsNCJIbGialgkTVTqZIDz1MVmmsC3IZCopga6wnUxg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 #### 8.4.5 关于拆分 vendors 后，`uview-ui`部分组件报错
 
@@ -460,7 +460,7 @@ module.exports = {
 
 重新打包，本地再次启动项目，浏览器控制台发现如下报错
 
-![ ](../img/uniapp/console.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYABCicpCXGeLxfhGpB7D4wZDHR5Rw3JhA4Gficicp4dTfPIk971LYoNqibVbdCVqrlJ6a009ib63TMv3Q/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 再到 unpackage 目录一看，居然还有`u-icon.vue`和`u-line.vue`未打包！
 
@@ -476,7 +476,7 @@ module.exports = {
 
 #### 8.4.6 拆分为各个小 chunk 后，页面 js 请求变多了
 
-![ ](../img/uniapp/new-console.png)
+![ ](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYABCicpCXGeLxfhGpB7D4wZFzuNsiabOSTKA8EtIKw0LcCpmskoZgTvHkHBCtadIzXQ6hzzLU4qTjQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 页面 js 请求变多，对页面性能也有一定影响，所以这里拆分，视具体项目而定。
 
@@ -582,3 +582,7 @@ Job succeeded
 1. [uniapp 官方文档](https://uniapp.dcloud.net.cn/)
 2. [webpack4 官方文档](https://v4.webpack.docschina.org/concepts/)
 3. [vue-cli 官方文档](https://cli.vuejs.org/zh/guide/)
+
+------
+
+![img](../img/gzh/gzh_qrcode.jpg)

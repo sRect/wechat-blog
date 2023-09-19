@@ -4,6 +4,8 @@ keywords: "uniapp, HbuilderX, tailwindcss, 微信小程序"
 date: "2023-07-18"
 ---
 
+![](https://mmbiz.qpic.cn/sz_mmbiz_jpg/Az6S7PrZXXYYu8ga771EfDh9xoqKSOO8rB4cnbgK3T7eCSa4J8Ac9ej28pfx2qy6zZrSmicd7SBl4KdS1VRf1dw/640?wx_fmt=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
 - [本文掘金链接](https://juejin.cn/post/7257022428193636409)
 
 > 如题，是基于HbuilderX创建的小程序项目，非cli方式创建的项目
@@ -158,7 +160,7 @@ npx tailwindcss -i ./tailwind-input.css -o ./static/css/tailwind.css --watch
 > + nodejs v12版本执行tailwindcss编译，[Npx tailwindcss results in "Unexpected Token ."](https://github.com/tailwindlabs/tailwindcss/discussions/8807)
 > + 根据提示，解决办法就是切换当前nodejs版本为v16
 
-![](../img/hbuilderx-tailwindcss/nvm.png)
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYYu8ga771EfDh9xoqKSOO8qCSE139wxfJ9c88J2QmfRSQWibArCZbjlPyGxXkBH7u7qdlLEibojGqg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ```javascript
 const {exec} = require('child_process');
@@ -441,7 +443,7 @@ setTimeout大法虽好，但是不优雅，30s不保证HbuilderX编译vue能结�
 > + 这里还是用到了`child_process.exec`子进程执行，境泽真香定律！
 > + child_process.exec执行shell可能会遇上`Permission denied`无权限执行, `chmod(u+x, /xx.sh)`解决
 
-![](../img/hbuilderx-tailwindcss/zx.png)
+![](https://mmbiz.qpic.cn/sz_mmbiz_png/Az6S7PrZXXYYu8ga771EfDh9xoqKSOO8aFlTMiapiaVicVEIonPySwVMLpyhtkQEibzGI58Xs1Smx6XVeECKfmdqRQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ```javascript
 const path = require("path");
