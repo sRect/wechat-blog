@@ -7,6 +7,7 @@ date: "2023-07-18"
 ![](https://mmbiz.qpic.cn/sz_mmbiz_jpg/Az6S7PrZXXYYu8ga771EfDh9xoqKSOO8rB4cnbgK3T7eCSa4J8Ac9ej28pfx2qy6zZrSmicd7SBl4KdS1VRf1dw/640?wx_fmt=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - [本文掘金链接](https://juejin.cn/post/7257022428193636409)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/HKpEuNf2HGF7AxFzoJEGHA)
 
 > 如题，是基于HbuilderX创建的小程序项目，非cli方式创建的项目
 

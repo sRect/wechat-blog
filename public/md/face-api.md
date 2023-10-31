@@ -7,8 +7,9 @@ date: "2022-11-29"
 ![](https://mmbiz.qpic.cn/sz_mmbiz_gif/Az6S7PrZXXbWbLo5ibXAWrJdkfdVcLK5p39gudVGviaNpsJ9cWI7mvEUAJm5bpMicGmiacYC6wuuo527YpsaoKJKbQ/640?wx_fmt=gif&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - [在线体验](https://srect.github.io/face-api.js)
-
 - [项目 github 仓库](https://github.com/sRect/face-api.js/tree/dy)
+- [本文掘金链接](https://juejin.cn/post/7171081395551338503)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/ooEQxGl1OsxhZe7n9o9eTw)
 
 > 前一阵子在刷抖音时，看到一个通过左右歪头选择两侧图片的视频，感觉很有趣。顿时想到了 n 年前的[**face-api.js**](https://github.com/justadudewhohacks/face-api.js)，那就基于这个来做吧。总体做好后，有很多细节需要改进，不够细腻丝滑。
 

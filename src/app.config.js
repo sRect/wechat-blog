@@ -14,6 +14,10 @@ export default {
       root: "pages/detail",
       pages: ["index"],
     },
+    {
+      root: "pages/webview",
+      pages: ["index"],
+    },
   ],
   window: {
     backgroundTextStyle: "light",

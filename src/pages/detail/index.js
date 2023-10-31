@@ -79,6 +79,16 @@ const Detail = () => {
     }
   };
 
+  // 在公众号中打开查看
+  const gotoWebview = e => {
+    console.log(e);
+    if(!e) return;
+
+    Taro.navigateTo({
+      url: `/pages/webview/index?path=${encodeURIComponent(e.detail)}`,
+    });
+  }
+
   useEffect(() => {
     if (!listPageData.filename && !router.params.filename) {
       Taro.hideLoading();
@@ -133,6 +143,7 @@ const Detail = () => {
           Taro.hideLoading();
         }}
         onMyevent2={onMyevent2}
+        onMyevent3={gotoWebview}
       />
     </View>
   );

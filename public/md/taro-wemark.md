@@ -5,8 +5,9 @@ date: "2022-04-04 18:02:42"
 ---
 
 - [小程序博客 github 仓库](https://github.com/sRect/wechat-blog)
-
+- [本文掘金链接](https://juejin.cn/post/7082711752877539359)
 - [本小程序链接](#小程序://sRect的个人博客/sRect的个人博客/Z1MPSUtT7bnfPFd)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/Blzv0flbJWccmZQ5GIl3kw)
 
 ## 1. 需求背景
 

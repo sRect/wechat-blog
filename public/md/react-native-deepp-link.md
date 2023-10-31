@@ -6,7 +6,9 @@ date: "2023-09-07"
 
 ![](https://mmbiz.qpic.cn/sz_mmbiz_jpg/Az6S7PrZXXYib8kJvG3doBrrXibvSsespxhrgPhQ5micXTSjFjrw6kOz4nhicsiaoEUvs0a0CiciaKZB3pbM7wJGq5Llg/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1)
 
-[本文 github 仓库链接](https://github.com/sRect/reactNativeBlogApp)
+- [本文 github 仓库链接](https://github.com/sRect/reactNativeBlogApp)
+- [本文掘金链接](https://juejin.cn/post/7275641079381934119)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/cJS8kYclVDZK_wwwcxzFJg)
 
 本文测试主要版本信息
 | package                  | version  |

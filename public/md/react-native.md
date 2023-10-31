@@ -6,8 +6,9 @@ date: "2023-05-23"
 
 - [本文 github 仓库链接](https://github.com/sRect/reactNativeBlogApp)
 - [本文掘金链接](https://juejin.cn/post/7234407587118530597)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/gQ1xhPJ7rnBdZWgH-qiaeQ)
 
-> 2023 年了，RN 也凉的差不多了。本文用 react native 做的 app 很简单，首页 + 列表页 + 详情页 + 关于页。总的感觉，涉及到原生方面，对于不会 android 和 ios 的 js 菜鸡，比较棘手，要折腾。
+> 本文用 react native 做的 app 很简单，首页 + 列表页 + 详情页 + 关于页。总的感觉，涉及到原生方面，对于不会 android 和 ios 的 js 菜鸡，比较棘手，要折腾。
 
 ![](https://mmbiz.qpic.cn/sz_mmbiz_gif/Az6S7PrZXXZSPkKoic0VcqUCDcBGZZNcp4TOrMtOzQENFzer4t5qCmcwibdTGD6WyVFOmibjktsUp6g5HxS3Jicf4A/640?wx_fmt=gif&wxfrom=5&wx_lazy=1&wx_co=1)
 

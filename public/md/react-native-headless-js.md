@@ -8,6 +8,7 @@ date: "2023-07-12"
 
 - [本文 github 仓库链接](https://github.com/sRect/reactNativeBlogApp/commit/f328f51c9686da68d04c24bdaa43ef0ffe73b332)
 - [本文掘金链接](https://juejin.cn/post/7254811625055944762)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/KythEKzRAZKarxDMbdk6MQ)
 
 ## 1. 写在前面
 

@@ -5,6 +5,7 @@ date: "2023-08-01"
 ---
 
 - [本文掘金链接](https://juejin.cn/post/7262201057957429304)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/4lbq0ctgHRSwf9f-aE3pdA)
 
 > 终极省流：项目中封装的请求方法存在问题，刷新token成功后，没把旧的请求结果返回到业务代码中，Promise一直处在pending状态，所以关闭loading方法一直没执行，导致一直在转圈圈
 

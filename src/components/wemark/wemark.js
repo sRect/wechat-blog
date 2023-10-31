@@ -76,7 +76,17 @@ Component({
       }
     },
     onTap: function (e) {
-      this.triggerEvent("myevent", e);
+      if (
+        e &&
+        e.target &&
+        e.target.dataset &&
+        e.target.dataset.url &&
+        e.target.dataset.url.startsWith("https://mp.weixin.qq.com")
+      ) {
+        this.triggerEvent("myevent3", e.target.dataset.url);
+      } else {
+        this.triggerEvent("myevent", e);
+      }
     },
     handleCopy: function (e) {
       this.triggerEvent("myevent2", e);

@@ -4,7 +4,8 @@ keywords: "uniapp, webpack4.x"
 date: "2022-08-08 22:15:07"
 ---
 
-[本文掘金链接](https://juejin.cn/post/7129492032241795080/)
+- [本文掘金链接](https://juejin.cn/post/7129492032241795080/)
+- [跳转公众号阅读](https://mp.weixin.qq.com/s/ymN49F91xR22ycLIYBJpYA)
 
 # uniapp 打包 h5 问题总结
 

@@ -85,8 +85,9 @@ function parse(md, options){
 					if(options.link){
 						env = 'link';
 						tokenData = {
-							href: token.href
-						};
+              href: token.href,
+              isgzhlink: token.href.startsWith("https://mp.weixin.qq.com"),
+            };
 					}
 				}else if(token.type === 'image'){
 					ret.push({
